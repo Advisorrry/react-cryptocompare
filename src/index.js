@@ -2,8 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import { App } from './App'
-import { store } from './redux/store'
 import { Provider } from 'react-redux'
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import rootReducer from './slices'
+
+const middleware = getDefaultMiddleware()
+const store = configureStore({
+  reducer: rootReducer,
+  middleware,
+  devTools: process.env.NODE_ENV !== 'production',
+})
 
 ReactDOM.render(
     <React.StrictMode>
